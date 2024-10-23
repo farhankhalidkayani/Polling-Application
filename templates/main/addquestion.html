@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% block body %}
+<div class="container">
+    <h4>{% if object %}Edit Question{% else %}Add Question{% endif %}</h4>
+
+    <form method="post" class="col s12">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form.as_p }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn waves-effect waves-light">
+            {% if object %}Update{% else %}Add{% endif %} Question
+        </button>
+    </form>
+
+    <br />
+    <a href="{% url 'main:index' %}" class="btn grey">Back to Questions List</a>
+</div>
+{% endblock %}

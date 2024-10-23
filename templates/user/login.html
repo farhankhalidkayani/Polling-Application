@@ -1,0 +1,25 @@
+{% extends "user/base.html" %}
+{% block body %}
+
+<div class="row">
+    <form class="col s12" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form.username.label_tag }}
+                {{ form.username }}  
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form.password.label_tag }}
+                {{ form.password }}  
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Login
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>
+
+{% endblock %}

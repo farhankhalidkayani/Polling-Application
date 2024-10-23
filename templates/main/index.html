@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+<div class="container">
+    <h2>Questions List</h2>
+    <ul class="collection">
+        {% for question in questions %}
+        <li class="collection-item">
+            <a href="{% url 'main:detail' question.id %}" class="black-text">{{ question.content }}</a>
+        </li>
+        {% empty %}
+        <li class="collection-item">No questions available.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

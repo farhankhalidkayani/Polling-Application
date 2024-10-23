@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>Results for: "{{ question.content }}"</h1>
+    <ul class="collection">
+        {% for option in question.option_set.all %}
+        <li class="collection-item">
+            {{ option.content }} - <strong>{{ option.votes }}</strong> votes
+        </li>
+        {% empty %}
+        <li class="collection-item">No options available for this question.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'main:index' %}" class="btn">Back to Questions List</a>
+</div>
+{% endblock %}

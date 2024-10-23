@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+
+{% block body %}
+<h2>Add Option for Question: "{{ question.content }}"</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn waves-effect waves-light">Add Option</button>
+</form>
+
+<br/>
+<a href="{% url 'main:detail' question.id %}" class="btn blue">Back to Question Details</a>  <!-- Change to 'question.id' -->
+<a href="{% url 'main:index' %}" class="btn grey">Back to Questions List</a>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+<h1>{{ question.content }}</h1>
+<ul>
+    <form method="post">
+        {% csrf_token %}
+        {% for option in question.option_set.all %}
+        <div class="option">
+            <input type="radio" name="option" value="{{ option.id }}" id="option{{ option.id }}" onclick="selectOption(this)">
+            <label for="option{{ option.id }}">{{ option.content }}</label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn waves-effect waves-light">Vote</button>
+    </form>
+</ul>
+
+<!-- Delete Question Button -->
+<form method="post" action="{% url 'main:deletequestion' question.id %}" style="margin-top: 20px;">
+    {% csrf_token %}
+    <button type="submit" class="btn red" onclick="return confirm('Are you sure you want to delete this question?');">Delete Question</button>
+</form>
+
+<style>
+.option {
+    transition: background-color 0.3s, transform 0.3s;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.option.selected {
+    background-color: #d1e0e0; /* Light color to indicate selection */
+    transform: scale(1.05); /* Slightly scale up */
+}
+</style>
+
+<script>
+function selectOption(element) {
+    // Remove 'selected' class from all options
+    const options = document.querySelectorAll('.option');
+    options.forEach(option => {
+        option.classList.remove('selected');
+    });
+
+    // Add 'selected' class to the clicked option
+    const selectedOption = element.parentElement; // Get the parent div of the clicked input
+    selectedOption.classList.add('selected');
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "main/base.html" %}
+
+{% block body %}
+<div class="container">
+    <h4>Confirm Deletion</h4>
+    <p>Are you sure you want to delete the question: "{{ object.content }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn red waves-effect waves-light">Confirm Deletion</button>
+        <a href="{% url 'main:index' %}" class="btn grey">Cancel</a>
+    </form>
+</div>
+{% endblock %}
